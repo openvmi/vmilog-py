@@ -2,6 +2,7 @@ from fileinput import filename
 import logging
 import logging.handlers
 from pathlib import Path
+import enum
 
 try:
     from logging import NullHandler
@@ -10,17 +11,27 @@ except ImportError:
         def emit(self, record):
             pass
 
-g_logLevel = None
+class LogLevelEnum(enum.Enum):
+    critical = logging.CRITICAL
+    fatal = logging.FATAL
+    error = logging.ERROR
+    warning = logging.WARNING
+    info = logging.INFO
+    debug = logging.DEBUG
+    notset = logging.NOTSET
 
-def setLogLevel(logLevel=logging.WARNING):
-    global g_logLevel
-    g_logLevel = logLevel
+class _logLevel:
+    g_logLevel = None
+
+def setLoggerLevel(level=LogLevelEnum.warning):
+    _logLevel.g_logLevel = level
 
 def getLogger(logName='default_vmilabs', savedPath=".",enableFile=False, enableConsole=False, logLevel=None):
     if logName == "":
         logName = 'default_vmilabs'
     if logLevel is None:
-        logLevel = g_logLevel if g_logLevel is not None else logging.WARNING
+        logLevel = _logLevel.g_logLevel if _logLevel.g_logLevel is not None else LogLevelEnum.warning
+    logLevel = logLevel.value
     p = Path(savedPath)
     if p.is_file():
         p = p.parent
