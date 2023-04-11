@@ -35,4 +35,7 @@ jobs:
         pwd
         ls  -al
     - name: Build package
-      run: python -m build
+      run: |
+        python -m build
+        ls -al
+        ls dist/
