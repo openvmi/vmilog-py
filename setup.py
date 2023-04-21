@@ -3,6 +3,8 @@ from setuptools import setup, find_packages
 VERSION = "0.5.0"
 
 install_requires = [
+    'netifaces==0.11.0',
+    'pyserial'
 ]
 
 setup(
