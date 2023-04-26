@@ -13,7 +13,7 @@ def getIpV4():
         return None
     desirdIface = ['eth0', 'wlan0']
     for i in desirdIface:
-        _ipv4 = inner_get_ip('eth0')
+        _ipv4 = inner_get_ip(i)
         if _ipv4 is not None:
-            return 'eth0', _ipv4
+            return i, _ipv4
     return None, None
