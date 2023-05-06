@@ -91,9 +91,10 @@ class PingService:
         self._channel = MqttChannel(host=brokerHost, 
                                     port=brokerPort, 
                                     username=brokerUserName, 
-                                    password=brokerPort)
+                                    password=brokerPassword)
         self._channel.on_connect = self._on_connected
         self._channel.on_disconnect = self._on_disconnected
+        self._disconnectedEvent.set()
         self._isRunCalled = False
         self._client = None
 
@@ -132,8 +133,8 @@ if __name__ == "__main__":
         deviceId="01",
         brokerHost="localhost",
         brokerPort=1883,
-        brokerUserName="mqtt:mqtt-test",
-        brokerPassword="mqtt-test",
+        brokerUserName="mqtt_host:mqtt_test",
+        brokerPassword="123456",
         addIp=False
     )
     p.Run()
