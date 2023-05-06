@@ -124,4 +124,16 @@ class PingService:
                 self._client.publish(topic=self._topic, payload=json.dumps(pingMsg),qos=0)
             else:
                 time.sleep(1)
-                
+
+
+if __name__ == "__main__":
+    p = PingService(
+        deviceType="MockType",
+        deviceId="01",
+        brokerHost="localhost",
+        brokerPort=1883,
+        brokerUserName="mqtt:mqtt-test",
+        brokerPassword="mqtt-test",
+        addIp=False
+    )
+    p.Run()
