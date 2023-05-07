@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = "0.9.0"
+VERSION = "1.0.0"
 
 install_requires = [
     'netifaces==0.11.0',
