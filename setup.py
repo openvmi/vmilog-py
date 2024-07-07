@@ -1,9 +1,8 @@
 from setuptools import setup, find_packages
 
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 install_requires = [
-    'netifaces==0.11.0',
     'pyserial',
     'paho-mqtt'
 ]
